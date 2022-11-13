@@ -6,7 +6,7 @@
 // of "waiting..." and the program ends without timing out when running,
 // you've got it :)
 
-// I AM NOT DONE
+
 
 use std::sync::Arc;
 use std::thread;
@@ -27,7 +27,7 @@ fn main() {
             num.jobs_completed += 1;
         }
     });
-    while status.jobs_completed < 10 {
+    while status.lock().unwrap().jobs_completed < 10 {
         println!("waiting... ");
         thread::sleep(Duration::from_millis(500));
     }
